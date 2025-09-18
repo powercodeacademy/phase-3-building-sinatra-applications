@@ -27,11 +27,11 @@ Record side of things, we have the models, migrations and seed data all set up.
 Run these commands to install the dependencies and set up the database:
 
 ```console
-$ bundle install
-$ bundle exec rake db:migrate db:seed
+bundle install
+bin/rake db:migrate db:seed
 ```
 
-> **Note**: Running `rake db:migrate db:seed` on one line will run the
+> **Note**: Running bin/rake db:migrate db:seed` on one line will run the
 > migrations first, then the seed file. It's a nice way to save a few
 > keystrokes!
 
@@ -42,7 +42,7 @@ organized.
 ## Separation of Concerns with File Structure
 
 So far, we've been setting up the file structure for our application in a way
-that nicely [**separates the concerns**][soc] of our code. Each folder, and each file
+that nicely [separates the concerns][soc] of our code. Each folder, and each file
 within that folder, has a clearly defined responsibility. Let's review:
 
 - `app/models`: Our Active Record models. Responsible for code that accesses and
@@ -57,7 +57,7 @@ within that folder, has a clearly defined responsibility. Let's review:
 - `spec`: Our RSpec tests.
 - `Gemfile`: Lists all the gems our application depends on.
 - `Rakefile`: Code for common tasks that we can easily run from the command
-  line, like `rake console`.
+  line, like bin/rake console`.
 
 By organizing our code this way and clearly separating out the different parts
 of the application, it becomes much easier for us and other developers to know
@@ -86,7 +86,7 @@ run App
 ```
 
 Where does this code belong? Well, we can leave _some_ of it in the `config.ru`
-file so that we'll be able to run our server with `rackup config.ru`. But we can
+file so that we'll be able to run our server with `bin/rackup`. But we can
 also organize it a bit better so that we don't end up writing all of our
 Sinatra-specific code in one file!
 
@@ -125,7 +125,7 @@ Try running the server with this updated file structure and make sure your
 server still works:
 
 ```console
-$ rackup config.ru
+bin/rackup
 ```
 
 You should still be able to visit
@@ -159,7 +159,7 @@ and see what effect they have with as little friction as possible. Right now,
 any time we make a change to the code for our controller, we need to:
 
 - Stop the server with `control + c`
-- Re-start the server with `rackup config.ru`
+- Re-start the server with `bin/rackup`
 
 We can simplify this process by using the [Rerun][rerun] Ruby gem, which watches
 for changes to our file system and reloads the program (similar to webpack
@@ -169,7 +169,7 @@ The Rerun gem is already included in the Gemfile, so we can try it out. To
 run our server in development mode using Rerun, run this command:
 
 ```console
-$ bundle exec rerun -b 'rackup config.ru'
+bin/rerun -b 'bin/rackup'
 ```
 
 Then make a request to [http://localhost:9292/](http://localhost:9292/) in the
@@ -198,7 +198,7 @@ end
 Now we can run the server with this Rake command:
 
 ```console
-$ bundle exec rake server
+bin/rake server
 ```
 
 ## Conclusion
